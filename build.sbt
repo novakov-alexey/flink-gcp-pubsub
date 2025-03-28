@@ -25,3 +25,13 @@ ThisBuild / assemblyMergeStrategy := {
     val oldStrategy = (ThisBuild / assemblyMergeStrategy).value
     oldStrategy(x)
 }
+
+Compile / run := Defaults
+    .runTask(
+      Compile / fullClasspath,
+      Compile / run / mainClass,
+      Compile / run / runner
+    )
+    .evaluated
+
+Compile / run / fork := true
